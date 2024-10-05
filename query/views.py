@@ -2,6 +2,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import Taking, Student
 
@@ -23,8 +24,8 @@ def query(request, taking_id):
 def take(request, taking_id):
     if request.method == "POST":
         taking = Taking.objects.get(pk=taking_id)
-        student = Student.objects.get(pk=int(request.POST[""]))
+        student = Student.objects.get()
 
         student.takings.add(taking)
 
-        return HttpResponseRedirect(reverse("query", args=(taking_id)))
+        return HttpResponseRedirect(reverse("query", args=(taking_id,)))
