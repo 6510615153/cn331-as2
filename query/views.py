@@ -13,17 +13,18 @@ def index(request):
         "takings": Taking.objects.all()
     })
 
-def query(request, current_course):
-    taking = Taking.objects.get()
+def query(request, taking_id):
+    taking = Taking.objects.get(pk=taking_id)
     return render(request, "query/query.html", {
         "taking": taking,
         "students": taking.students.all(),
-        "non_taker": Student.objects.exclude(takings=taking).all(),
     })
 
-def take(request, current_course):
+def take(request, taking_id):
     if request.method == "POST":
-        taking = Taking.objects.get()
-        student = Student.objects.get()
+        taking = Taking.objects.get(pk=taking_id)
+        student = Student.objects.get(pk=int(request.POST[""]))
 
-        return HttpResponseRedirect(reverse("query", args=(current_course)))
+        student.takings.add(taking)
+
+        return HttpResponseRedirect(reverse("query", args=(taking_id)))

@@ -13,7 +13,7 @@
             <li>No students</li>
         {% endfor %}
 
-    <form action="{% url 'take' taking.current_course%}" method="post">
+    <form action="{% url 'take' taking.id %}" method="post">
         {% csrf_token %}
         {{ form }}
         <button type="submit">Enroll</button>

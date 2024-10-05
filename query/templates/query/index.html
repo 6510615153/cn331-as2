@@ -9,7 +9,7 @@
     <h1>Course List</h1>
     <ul>
     {% for taking in takings %}
-        <li><a href="{% url 'query' taking.current_course %}">{{ taking.current_course }}</a> | Total Seats: {{ taking.seats }}</li>
+        <li><a href="{% url 'query' taking.id %}">{{ taking.current_course }}</a> | Total Seats: {{ taking.seats }}</li>
     {% empty %}
         <li>No courses found</li>
     {% endfor %}

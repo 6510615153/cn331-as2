@@ -5,7 +5,7 @@ from .models import Course, Taking, Student
 # Register your models here.
 
 class TakingAdmin(admin.ModelAdmin):
-    list_display = ("current_course", "seats")
+    list_display = ("id", "current_course", "seats")
 
 class StudentAdmin(admin.ModelAdmin):
     filter_horizontal = ("takings", )
