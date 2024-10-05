@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -18,6 +19,7 @@ class Taking(models.Model):
         return f"{self.current_course} | {self.current_course.course_name}"
 
 class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     fname = models.CharField(max_length=64)
     lname = models.CharField(max_length=64)
     takings = models.ManyToManyField(Taking, blank=True, related_name="students")

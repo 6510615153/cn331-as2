@@ -24,7 +24,6 @@ def query(request, current_course):
 def take(request, current_course):
     if request.method == "POST":
         taking = Taking.objects.get()
-        student = Student.objects.get(pk=int(request.POST["student"]))
-        student.takings.add(taking)
+        student = Student.objects.get()
 
         return HttpResponseRedirect(reverse("query", args=(current_course)))
