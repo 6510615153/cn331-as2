@@ -15,7 +15,7 @@ class Taking(models.Model):
     seats = models.IntegerField()
 
     def __str__(self):
-        return f"{self.current_course} | Available: {self.seats}"
+        return f"{self.current_course} | {self.current_course.course_name}"
 
 class Student(models.Model):
     fname = models.CharField(max_length=64)

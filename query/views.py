@@ -1,11 +1,13 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .models import Taking, Student
 
 # Create your views here.
 
+@login_required(login_url='/users/')
 def index(request):
     return render(request, "query/index.html", {
         "takings": Taking.objects.all()

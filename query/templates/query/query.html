@@ -13,6 +13,13 @@
             <li>No students</li>
         {% endfor %}
 
+    <form action="{% url 'take' taking.current_course %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Enroll</button>
+    </form>
+
+
     <a href="{% url 'index' %}">Back to Courses</a>
 </body>
 </html>

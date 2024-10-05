@@ -4,5 +4,6 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('<str:current_course>', views.query, name='query'),
-    #path('<str:name>', views.take, name='take'),
+    path('<str:current_course>/take', views.take, name='take'),
+    path('', views.index, name='index_return'),
 ]
