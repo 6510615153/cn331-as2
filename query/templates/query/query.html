@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Info</title>
+</head>
+<body>
+    <h2>Students Enrolled: </h2>
+        {% for student in students %}
+            <li>{{ student }}</li>
+        {% empty %}
+            <li>No students</li>
+        {% endfor %}
+
+    <a href="{% url 'index' %}">Back to Courses</a>
+</body>
+</html>
