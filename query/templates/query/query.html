@@ -13,13 +13,16 @@
             <li>No students</li>
         {% endfor %}
 
+    <h3>Total Students: {{ students_count }} / {{ taking.seats }}</h3>
+
     <form action="{% url 'take' taking.id %}" method="post" name="student">
         {% csrf_token %}
         {{ form }}
-        <button type="submit">Enroll</button>
+        <button type="submit">{{ button_label }}</button>
     </form>
 
+    <br><br>
 
-    <a href="{% url 'index' %}">Back to Courses</a>
+    <a href="{% url 'index_return' %}">Back to Courses</a>
 </body>
 </html>

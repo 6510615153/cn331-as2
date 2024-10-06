@@ -11,14 +11,22 @@ from .models import Taking, Student
 @login_required(login_url='/users/')
 def index(request):
     return render(request, "query/index.html", {
-        "takings": Taking.objects.all()
+        "takings": Taking.objects.all(),
+        "full": False,
     })
 
 def query(request, taking_id):
     taking = Taking.objects.get(pk=taking_id)
+    student = Student.objects.get(user=request.user)
+    if student in taking.students.all():
+        button_label = "Cancel"
+    else:
+        button_label = "Enroll"
     return render(request, "query/query.html", {
         "taking": taking,
         "students": taking.students.all(),
+        "students_count": taking.students.all().count(),
+        "button_label": button_label,
     })
 
 def take(request, taking_id):
@@ -26,6 +34,15 @@ def take(request, taking_id):
         taking = Taking.objects.get(pk=taking_id)
         student = Student.objects.get(user=request.user)
 
-        student.takings.add(taking)
-
-        return HttpResponseRedirect(reverse("query", args=(taking_id,)))
+        if taking.students.all().count() >= taking.seats:
+            return render(request, "query/index.html", {
+                "takings": Taking.objects.all(),
+                "full": True,
+            })
+        else:
+            if student in taking.students.all():
+                student.takings.remove(taking)
+                return HttpResponseRedirect(reverse("query", args=(taking_id,)))
+            else:
+                student.takings.add(taking)
+                return HttpResponseRedirect(reverse("query", args=(taking_id,)))

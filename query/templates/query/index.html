@@ -6,7 +6,14 @@
     <title>Course List</title>
 </head>
 <body>
-    <h1>Course List</h1>
+
+    {% if full %}
+        <h1>Sorry, the course is full.</h1>
+    {% else %}
+        <h1>Select the course.</h1>
+    {% endif %}
+
+    <h2>Course List</h2>
     <ul>
     {% for taking in takings %}
         <li><a href="{% url 'query' taking.id %}">{{ taking.current_course }}</a> | Total Seats: {{ taking.seats }}</li>
@@ -14,5 +21,7 @@
         <li>No courses found</li>
     {% endfor %}
     </ul>
+
+    <a href="{% url 'index' %}">Back to User page</a>
 </body>
 </html>
