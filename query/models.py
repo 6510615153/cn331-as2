@@ -22,7 +22,7 @@ class Taking(models.Model):
     seats = models.IntegerField()
 
     def __str__(self):
-        return f"{self.id} {self.current_course} {self.current_course.course_name}"
+        return f"{self.current_course} {self.current_course.course_name}"
 
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

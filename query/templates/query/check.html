@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Courses</title>
+</head>
+<body style="background-color:rgb(217, 225, 235);">
+    <center style="font-size: 20px;"><h1 style="color:blue">You are {{ request.user.username }}</h1></center>
+
+    <div style="padding-left: 60px; font-size: 20px;">
+        <h2>Course Enrolled</h2>
+        <ul>
+        {% for course in courses.all %}
+            <li>{{ course }}</li>
+        {% empty %}
+            <li>No courses found</li>
+        {% endfor %}
+        </ul>
+        <a href="{% url 'index' %}" style="font-size: 23px;">Back to User Page</a>
+    </div>
+
+    
+</body>
+</html>

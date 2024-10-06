@@ -47,3 +47,10 @@ def take(request, taking_id):
             else:
                 student.takings.add(taking)
                 return HttpResponseRedirect(reverse("query", args=(taking_id,)))
+            
+def check(request):
+    student = Student.objects.get(user=request.user)
+    return render(request, "query/check.html", {
+        "students": student,
+        "courses": student.takings,
+    })
