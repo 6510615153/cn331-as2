@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from .models import Taking, Student
+from .models import Taking, Student, Course
 
 # Create your views here.
 

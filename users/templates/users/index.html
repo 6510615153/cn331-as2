@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>user Page</title>
+    <title>User Page</title>
 </head>
-<body>
-    <h1>Welcome, {{ request.user.username }}</h1>
-<ul>
-    <li><a href="{% url 'index_return' %}">Enroll in Course.</a></li>
-</ul>
+<body style="background-image: linear-gradient(rgb(144, 172, 213), rgb(232, 234, 238)); 
+background-repeat: no-repeat; height: 96vh">
+<div style="height: 100%; border: 5px solid rgb(98, 100, 123); box-sizing: border-box;">
+<center>
 
-<a href="{% url 'logout' %}">Log Out</a>
+    <div style="font-size: 20px">
+        <center><h1>Welcome, {{ request.user.username }}</h1></center>
+    </div>
+
+    <br><br><br><br>
+    <a href="{% url 'index_return' %}" style="font-size: 30px">Enroll in Course.</a>
+
+    <br><br><br><br><br><br>
+    <a href="{% url 'logout' %}" style="font-size: 25px">Log Out</a>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+</center>
+</div>
 </body>
 </html>

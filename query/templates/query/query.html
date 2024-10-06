@@ -5,7 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course Info</title>
 </head>
-<body>
+<body style="background-color:rgb(217, 225, 235);">
+
+    <center style="font-size: 20px;"><h1 style="color:blue">You are {{ request.user.username }}</h1></center>
+
+<div style="padding-left: 30px; font-size: 18px;">
+    <h1>{{ taking.current_course }}</h1>
+
+    <h3>Total Students: {{ students_count }} / {{ taking.seats }}</h3>
+
     {% if user.is_superuser %}
     <h2>Students Enrolled: </h2>
         {% for student in students %}
@@ -15,14 +23,13 @@
         {% endfor %}
     {% endif %}
 
-    <h3>Total Students: {{ students_count }} / {{ taking.seats }}</h3>
-
     {% if not user.is_superuser %}
     {% if not closed %}
     <form action="{% url 'take' taking.id %}" method="post" name="student">
         {% csrf_token %}
         {{ form }}
-        <button type="submit">{{ button_label }}</button>
+        <h3 style="color: rgb(200, 13, 13);">Press this button to {{ button_label }}</h3>
+        <button type="submit" style="font-size: 23px; size: 25px;">{{ button_label }}</button>
     </form>
     {% else %}
     <h3>The Course has stopped accepting.</h3>
@@ -30,6 +37,8 @@
     {% endif %}
     <br><br>
 
-    <a href="{% url 'index_return' %}">Back to Courses</a>
+    <a href="{% url 'index_return' %}" style="font-size: 23px;">Back to Courses</a>
+
+</div>
 </body>
 </html>

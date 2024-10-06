@@ -5,16 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
 </head>
-<body>
+<body style="background-color:rgb(215, 217, 220); height: 96vh">
+<div style="height: 100%; border: 5px solid black; box-sizing: border-box;">
+    <center>
+    <h1>Login to Enroll your Courses</h1>
+
+    <br><br>
+
     <form action="{% url 'login' %}" method="post">
         {% csrf_token %}
-        <input type="text" name="username" placeholder="Username">
+        <input type="text" name="username" placeholder="Username" style="font-size: 23px; height: 25px;">
         <br>
         <br>
-        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="password" placeholder="Password" style="font-size: 23px; height: 25px;">
         <br>
         <br>
-        <input type="submit" value="Login">
+        <input type="submit" value="Login" style="font-size: 23px; size: 25px;">
     </form>
+</center>
+<div>
 </body>
 </html>

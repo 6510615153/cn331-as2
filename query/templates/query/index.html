@@ -5,23 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Course List</title>
 </head>
-<body>
+<body style="background-color:rgb(217, 225, 235);">
 
-    {% if full %}
-        <h1>Sorry, the course is full.</h1>
-    {% else %}
-        <h1>Select the course.</h1>
-    {% endif %}
+    <center style="font-size: 20px;"><h1 style="color:blue">You are {{ request.user.username }}</h1></center>
 
-    <h2>Course List</h2>
-    <ul>
-    {% for taking in takings %}
-        <li><a href="{% url 'query' taking.id %}">{{ taking.current_course }}</a> | Total Seats: {{ taking.seats }}</li>
-    {% empty %}
-        <li>No courses found</li>
-    {% endfor %}
-    </ul>
+<div style="padding-left: 60px; font-size: 20px;">
+    {% if full %}<h1 style="color: red;">Sorry, the course is full.</h1>{% else %}<h1 style="color: red;">Select the course.</h1>{% endif %}
+    <div style="padding-left: 30px; ">
+        <h2>Course List</h2>
+        <ul>
+        {% for taking in takings %}
+            <li><a href="{% url 'query' taking.id %}">{{ taking.current_course }}</a> | Total Seats: {{ taking.seats }}</li>
+        {% empty %}
+            <li>No courses found</li>
+        {% endfor %}
+        </ul>
 
-    <a href="{% url 'index' %}">Back to User page</a>
+        <a href="{% url 'index' %}">Back to User page</a>
+    </div>
+</div>
+
 </body>
 </html>

@@ -14,7 +14,7 @@ class Course(models.Model):
     course_semester = models.CharField(max_length=1)
     course_year = models.CharField(max_length=5)
     def __str__(self):
-        return f"{self.course_code}"
+        return f"{self.course_code} {self.course_name}"
     
 class Taking(models.Model):
     status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name="name")
