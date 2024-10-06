@@ -26,6 +26,7 @@ def query(request, taking_id):
         "taking": taking,
         "students": taking.students.all(),
         "students_count": taking.students.all().count(),
+        "closed": (taking.status=="Close"),
         "button_label": button_label,
     })
 
@@ -34,15 +35,15 @@ def take(request, taking_id):
         taking = Taking.objects.get(pk=taking_id)
         student = Student.objects.get(user=request.user)
 
-        if taking.students.all().count() >= taking.seats:
-            return render(request, "query/index.html", {
-                "takings": Taking.objects.all(),
-                "full": True,
-            })
-        else:
-            if student in taking.students.all():
+        if student in taking.students.all():
                 student.takings.remove(taking)
                 return HttpResponseRedirect(reverse("query", args=(taking_id,)))
+        else:
+            if taking.students.all().count() >= taking.seats:
+                return render(request, "query/index.html", {
+                    "takings": Taking.objects.all(),
+                    "full": True,
+                })
             else:
                 student.takings.add(taking)
                 return HttpResponseRedirect(reverse("query", args=(taking_id,)))

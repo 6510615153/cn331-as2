@@ -6,21 +6,26 @@
     <title>Course Info</title>
 </head>
 <body>
+    {% if user.is_superuser %}
     <h2>Students Enrolled: </h2>
         {% for student in students %}
             <li>{{ student }}</li>
         {% empty %}
             <li>No students</li>
         {% endfor %}
+    {% endif %}
 
     <h3>Total Students: {{ students_count }} / {{ taking.seats }}</h3>
 
+    {% if not user.is_superuser %}
+    {% if not closed %}
     <form action="{% url 'take' taking.id %}" method="post" name="student">
         {% csrf_token %}
         {{ form }}
         <button type="submit">{{ button_label }}</button>
     </form>
-
+    {% endif %}
+    {% endif %}
     <br><br>
 
     <a href="{% url 'index_return' %}">Back to Courses</a>
