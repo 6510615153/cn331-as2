@@ -4,7 +4,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
-from .models import Taking, Student, Course
+from .models import Taking, Student, Course, Status
 
 # Create your views here.
 
@@ -26,7 +26,7 @@ def query(request, taking_id):
         "taking": taking,
         "students": taking.students.all(),
         "students_count": taking.students.all().count(),
-        "closed": (taking.status=="Close"),
+        "closed": (taking.status==Status.objects.get(pk=2)),
         "button_label": button_label,
     })
 

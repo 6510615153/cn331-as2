@@ -24,16 +24,16 @@
     {% endif %}
 
     {% if not user.is_superuser %}
-    {% if not closed %}
-    <form action="{% url 'take' taking.id %}" method="post" name="student">
-        {% csrf_token %}
-        {{ form }}
-        <h3 style="color: rgb(200, 13, 13);">Press this button to {{ button_label }}</h3>
-        <button type="submit" style="font-size: 23px; size: 25px;">{{ button_label }}</button>
-    </form>
-    {% else %}
-    <h3>The Course has stopped accepting.</h3>
-    {% endif %}
+        {% if not closed %}
+        <form action="{% url 'take' taking.id %}" method="post" name="student">
+            {% csrf_token %}
+            {{ form }}
+            <h3 style="color: rgb(200, 13, 13);">Press this button to {{ button_label }}</h3>
+            <button type="submit" style="font-size: 23px; size: 25px;">{{ button_label }}</button>
+        </form>
+        {% else %}
+            <h3>This Course has stopped accepting.</h3>
+        {% endif %}
     {% endif %}
     <br><br>
 
