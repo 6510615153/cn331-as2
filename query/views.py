@@ -1,5 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -24,7 +24,7 @@ def query(request, taking_id):
 def take(request, taking_id):
     if request.method == "POST":
         taking = Taking.objects.get(pk=taking_id)
-        student = Student.objects.get()
+        student = Student.objects.get(user=request.user)
 
         student.takings.add(taking)
 
