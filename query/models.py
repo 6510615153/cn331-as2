@@ -17,7 +17,7 @@ class Course(models.Model):
         return f"{self.course_code}"
     
 class Taking(models.Model):
-    status = models.CharField(max_length=5)
+    status = models.ForeignKey(Status, on_delete=models.CASCADE, related_name="name")
     current_course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="name")
     seats = models.IntegerField()
 
