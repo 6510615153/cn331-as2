@@ -1,7 +1,7 @@
 # cn331-as2
 
 ### Member: 
-Nitipong Kadsritalee 6510615153
+- Nitipong Kadsritalee 6510615153
 
 # Website for Enrolling into Courses
 
@@ -18,4 +18,4 @@ Nitipong Kadsritalee 6510615153
     - List of all students enrolled, if you have Superuser Privilege.
     - A text showing up when the course is closed.
 
-### Video Link:
+### Video Link: [Django Assignment 2](https://drive.google.com/file/d/1DHArWJSAIQGqc1ucytluvKaeccTKtRXp/view?usp=sharing)
