@@ -26,7 +26,7 @@ def query(request, taking_id):
         "taking": taking,
         "students": taking.students.all(),
         "students_count": taking.students.all().count(),
-        "closed": (taking.status==Status.objects.get(pk=2)),
+        "closed": (taking.status=="Close"),
         "button_label": button_label,
     })
 
