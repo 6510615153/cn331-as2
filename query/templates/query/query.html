@@ -24,7 +24,7 @@
     {% endif %}
 
     {% if not user.is_superuser %}
-        {% if not closed %}
+        {% if not closed|stringformat:"s" == "Close" %}
         <form action="{% url 'take' taking.id %}" method="post" name="student">
             {% csrf_token %}
             {{ form }}
