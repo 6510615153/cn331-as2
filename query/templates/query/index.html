@@ -15,13 +15,13 @@
         <h2>Course List</h2>
         <ul>
         {% for taking in takings %}
-            <li><a href="{% url 'query' taking.id %}">{{ taking.current_course }}</a> | Total Seats: {{ taking.seats }}</li>
+            <li><a href="{% url 'query:query_id' taking.id %}">{{ taking.current_course }}</a> | Total Seats: {{ taking.seats }}</li>
         {% empty %}
             <li>No courses found</li>
         {% endfor %}
         </ul>
 
-        <a href="{% url 'index' %}">Back to User page</a>
+        <a href="{% url 'users:index' %}">Back to User page</a>
     </div>
 </div>
 
