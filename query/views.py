@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
+# from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
@@ -37,7 +38,7 @@ def take(request, taking_id):
 
         if student in taking.students.all():
                 student.takings.remove(taking)
-                return HttpResponseRedirect(reverse("query", args=(taking_id,)))
+                return HttpResponseRedirect(reverse("query:query_id", args=(taking_id,)))
         else:
             if taking.students.all().count() >= taking.seats:
                 return render(request, "query/index.html", {
@@ -46,7 +47,12 @@ def take(request, taking_id):
                 })
             else:
                 student.takings.add(taking)
-                return HttpResponseRedirect(reverse("query", args=(taking_id,)))
+                return HttpResponseRedirect(reverse("query:query_id", args=(taking_id,)))
+    else:
+        return render(request, "query/index.html", {
+            "takings": Taking.objects.all(),
+            "full": False,
+        })
             
 def check(request):
     student = Student.objects.get(user=request.user)
